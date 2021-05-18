@@ -262,10 +262,11 @@ const Grid = () => {
         {/* Add Device Form */}
         {
           isDeviceFormVisible ? (
-            <div className="h-screen w-screen fixed top-0 left-0 bg-[rgba(0,0,0,0.80)] z-50 flex justify-center items-center">
-              <div className="bg-white rounded-lg h-96 w-11/12 transition duration-1000 relative opacity-50 active:opacity-100 focus-within:opacity-100">
+            <div className="h-screen w-screen fixed top-0 left-0 bg-[rgba(0,0,0,0.80)] md:bg-[rgba(0,0,0,0.50)] z-50 flex justify-center items-center md:-left-40">
+              <div className="bg-white rounded-lg h-96 w-11/12 transition duration-1000 relative opacity-80 active:opacity-100 
+              focus-within:opacity-100 md:max-w-sm">
                 {/* Close Button */}
-                <XIcon className="h-5 absolute top-4 right-4 text-xl text-gray-700" onClick={toggleDeviceForm} />
+                <XIcon className="h-5 absolute top-4 right-4 text-xl text-gray-700 cursor-pointer" onClick={toggleDeviceForm} />
                 {/* Header */}
                 <div className="text-center m-3 mt-10 font-san">
                   <b className="text-xl text-gray-900">Add A New Device</b> <br />
