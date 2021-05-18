@@ -1,65 +1,47 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState, useEffect, useRef } from 'react';
+import Head from 'next/head';
 
-export default function Home() {
+// components
+import Preloader from '../components/Preloader';
+import Login from '../components/Auth/Login';
+
+export default function Home ({ data }) {
+  const [loading, setLoading] = useState(false);
+
+  // Refs
+  const appRef = useRef(null);
+
+  useEffect(() => {
+    // window.addEventListener('DOMContentLoaded', () => {
+    //   console.log('yup!');
+    //   setTimeout(() => setLoading(true), 1000)
+    // });
+
+    if (appRef.current) {
+      setTimeout(() => setLoading(true), 5000)
+    } else {
+      setLoading(false);
+    }
+  }, [])
+
   return (
-    <div className={styles.container}>
+    <div className="h-screen bg-blue-50" ref={appRef}>
       <Head>
-        <title>Create Next App</title>
+        <title>Johnson & Johnson Software Garage - Testing Device Tracking System</title>
+        <meta charset-="utf-8" />
+        <meta name="description" content-="A minimal Testing Device Tracking System" />
+        <meta name="author" content-="Precious Adeyinka" />
+        {/* <meta name="viewport" content-="width=device-width, initial-scale=1" /> */}
         <link rel="icon" href="/favicon.ico" />
+        {/* Line Awesome - Icons */}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      {/* Preloader */}
+      <Preloader loading={loading} />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      {/* Auth */}
+      <Login />
     </div>
   )
 }
